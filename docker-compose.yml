@@ -1,0 +1,56 @@
+version: "3.9"
+
+services:
+    api:
+        command: /start
+        restart: always
+        image: mitch122/katplan:api-2.0.0
+        container_name: katplan_api
+        expose:
+            - "9999"
+        volumes:
+            - media_volume:/app/mediafiles
+            - backup_volume:/app/backups
+        env_file:
+            - ./.envs/.django
+            - ./.envs/.postgres
+        depends_on:
+            - postgres
+        networks:
+            - katplan_nw
+
+    postgres:
+        image: mitch122/katplan:db-2.0.0
+        container_name: katplan_db
+        restart: always
+        volumes:
+            - postgres_data_volume:/var/lib/postgresql/data
+        env_file:
+            - ./.envs/.postgres
+        networks:
+            - katplan_nw
+
+    nginx:
+        image: mitch122/katplan:nginx-2.0.0
+        container_name: katplan_nginx
+        restart: always
+        volumes:
+            - media_volume:/app/mediafiles
+        ports:
+            - "8001:80"
+        depends_on:
+            - api
+        networks:
+            - katplan_nw
+
+networks:
+    katplan_nw:
+        external: true
+
+volumes:
+    media_volume: 
+          name: "katplan_media"
+    backup_volume: 
+          name: "katplan_backup"
+    postgres_data_volume: 
+          name: "katplan_postgres"
