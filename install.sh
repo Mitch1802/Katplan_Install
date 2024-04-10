@@ -14,15 +14,20 @@ fi
 
 sudo git clone $PROJECT_GIT_URL $PROJECT_BASE_PATH
 
-sudo docker login --username mitch1802 --password-stdin
+echo "Starte Docker Login..."
+sudo docker login --username mitch122 --password-stdin
+
+echo "Lade Docker Images..."
 sudo docker pull mitch122/katplan:nginx-2.0.0
 sudo docker pull mitch122/katplan:db-2.0.0
 sudo docker pull mitch122/katplan:api-2.0.0
 
+echo "Starte Docker..."
 cd $PROJECT_BASE_PATH
 sudo docker network create -d bridge $DOCKER_NETWORK_NAME
 sudo docker compose up --build -d --remove-orphans
 sleep 30
+echo "Lade Initial Daten..."
 sudo docker compose exec api python manage.py loaddata /app/backups/initial.json
 
 echo "Katplan Installation erfolgreich durchgeführt!"
