@@ -14,7 +14,7 @@ fi
 
 sudo git clone $PROJECT_GIT_URL $PROJECT_BASE_PATH
 
-sudo docker login --username mitch122 --password-stdin
+sudo docker login --username mitch1802 --password-stdin
 sudo docker pull mitch122/katplan:nginx-2.0.0
 sudo docker pull mitch122/katplan:db-2.0.0
 sudo docker pull mitch122/katplan:api-2.0.0
