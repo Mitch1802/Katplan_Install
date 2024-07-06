@@ -16,12 +16,12 @@ fi
 sudo git clone $PROJECT_GIT_URL $PROJECT_BASE_PATH
 
 echo "Stoppe Docker Container"
-sudo docker stop katplan_2432_nginx
-sudo docker stop katplan_2432_db
-sudo docker stop katplan_2432_api
-sudo docker remove katplan_2432_nginx
-sudo docker remove katplan_2432_db
-sudo docker remove katplan_2432_api
+sudo docker stop katplan_nginx
+sudo docker stop katplan_db
+sudo docker stop katplan_api
+sudo docker remove katplan_nginx
+sudo docker remove katplan_db
+sudo docker remove katplan_api
 
 echo "Lade Docker Images..."
 sudo docker pull mitch122/katplan:nginx-$TAG
