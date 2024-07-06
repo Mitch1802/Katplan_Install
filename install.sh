@@ -27,4 +27,7 @@ sleep 30
 echo "Lade Initial Daten..."
 sudo docker compose exec api python manage.py loaddata /app/backups/initial.json
 
+echo "Starte Docker..."
+sudo rm install.sh README.md
+sudo rm -r .git
 echo "Katplan Installation erfolgreich durchgeführt!"
