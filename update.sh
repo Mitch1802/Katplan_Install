@@ -8,7 +8,7 @@ PROJECT_BASE_PATH='/srv/katplan/'
 TAG='2432v2.1.0'
 
 if [ ! -d $PROJECT_BASE_PATH ]
-  sudo rm /srv/katplan/*
+  sudo rm -r /srv/katplan/*
 then
   mkdir -p $PROJECT_BASE_PATH
 fi
