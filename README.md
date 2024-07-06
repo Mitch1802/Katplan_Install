@@ -1,8 +1,9 @@
 bash <(curl -Ls https://raw.githubusercontent.com/Mitch1802/Katplan_Install/main/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/Mitch1802/Katplan_Install/main/update.sh)
 
 docker network ls
 docker images
-docker ps -als
+docker ps -a 
 docker volume ls
 
 docker network rm katplan_nw
