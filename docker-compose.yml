@@ -1,8 +1,5 @@
 services:
-    api: &api
-        build:
-            context: .
-            dockerfile: ./docker/django/Dockerfile
+    api:
         command: /start
         restart: always
         image: mitch122/katplan:api-${PLZ}v${VERSION}
@@ -21,9 +18,6 @@ services:
             - katplan_2432_nw
 
     postgres:
-        build:
-            context: .
-            dockerfile: ./docker/postgres/Dockerfile
         image: mitch122/katplan:db-${PLZ}v${VERSION}
         container_name: ${NAME}_db
         restart: always
@@ -35,9 +29,6 @@ services:
             - katplan_2432_nw
 
     nginx:
-        build:
-            context: .
-            dockerfile: ./docker/nginx/Dockerfile
         image: mitch122/katplan:nginx-${PLZ}v${VERSION}
         container_name: ${NAME}_nginx
         restart: always
