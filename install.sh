@@ -6,6 +6,7 @@ echo "Katplan Installation startet!"
 PROJECT_GIT_URL='https://github.com/Mitch1802/Katplan_Install.git'
 PROJECT_BASE_PATH='/srv/katplan/'
 DOCKER_NETWORK_NAME='katplan_nw'
+TAG='2432v2.1.0'
 
 if [ ! -d $PROJECT_BASE_PATH ]
 then
@@ -15,9 +16,9 @@ fi
 sudo git clone $PROJECT_GIT_URL $PROJECT_BASE_PATH
 
 echo "Lade Docker Images..."
-sudo docker pull mitch122/katplan:nginx-2.0.0
-sudo docker pull mitch122/katplan:db-2.0.0
-sudo docker pull mitch122/katplan:api-2.0.0
+sudo docker pull mitch122/katplan:nginx-$TAG
+sudo docker pull mitch122/katplan:db-$TAG
+sudo docker pull mitch122/katplan:api-$TAG
 
 echo "Starte Docker..."
 cd $PROJECT_BASE_PATH
