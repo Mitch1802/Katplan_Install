@@ -34,9 +34,6 @@ services:
         restart: always
         volumes:
             - media_volume:/app/mediafiles
-        environment:
-            SERVER_NAME: ${DOMAIN}
-            API_URL: http://${NAME}_api
         ports:
             - '5000:80'
         depends_on:
