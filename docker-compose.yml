@@ -2,8 +2,8 @@ services:
     api:
         command: /start
         restart: always
-        image: mitch122/katplan:api-2.1.0
-        container_name: katplan_api
+        image: mitch122/katplan:api-${VERSION}
+        container_name: ${NAME}_api
         expose:
             - "9999"
         volumes:
@@ -18,8 +18,8 @@ services:
             - katplan_2432_nw
 
     postgres:
-        image: mitch122/katplan:db-2.1.0
-        container_name: katplan_db
+        image: mitch122/katplan:db-${VERSION}
+        container_name: ${NAME}_db
         restart: always
         volumes:
             - postgres_data_volume:/var/lib/postgresql/data
@@ -29,11 +29,14 @@ services:
             - katplan_2432_nw
 
     nginx:
-        image: mitch122/katplan:nginx-2.1.0
-        container_name: katplan_nginx
+        image: mitch122/katplan:nginx-${VERSION}
+        container_name: ${NAME}_nginx
         restart: always
         volumes:
             - media_volume:/app/mediafiles
+        environment:
+            SERVER_NAME: ${DOMAIN}
+            API_URL: http://${NAME}_api
         ports:
             - '5000:80'
         depends_on:
@@ -47,8 +50,8 @@ networks:
 
 volumes:
     media_volume: 
-          name: "katplan_2432_media"
+          name: "${NAME}_media"
     backup_volume: 
-          name: "katplan_2432_backup"
+          name: "${NAME}_backup"
     postgres_data_volume: 
-          name: "katplan_2432_postgres"
+          name: "${NAME}_postgres"
