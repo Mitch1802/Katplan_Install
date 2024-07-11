@@ -17,8 +17,8 @@ fi
 cd $PROJECT_BASE_PATH
 
 echo "Herunterladen neuer Konfigurationen..."
-wget -N https://raw.githubusercontent.com/Mitch1802/Katplan_Install/main/docker-compose.yml
-wget -N https://raw.githubusercontent.com/Mitch1802/Katplan_Install/main/.env
+wget https://raw.githubusercontent.com/Mitch1802/Katplan_Install/main/docker-compose.yml
+wget https://raw.githubusercontent.com/Mitch1802/Katplan_Install/main/.env
 
 echo "Stoppe Docker Container..."
 sudo docker stop katplan_2432_nginx
